@@ -22,10 +22,13 @@ Then install the dependencies (figlet, chalk and inquirer):
 `npm i`
 
 ## Usage
-Run the app and answer the prompts. Afterwards, the `/output` directory will contain the file `team.html`, showing the information provided.
+Run the app and answer the prompts.
 
 `node app.js`
 
+Afterwards, the `/output` directory will contain the file `team.html`, showing the information provided.
+
+## Demo
 Here's a quick demo of functionality:
 
 ![Demo of engi-team-gen usage](demo/engi-team-gen-demo.gif)
