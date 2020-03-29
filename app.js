@@ -10,10 +10,15 @@ const OUTPUT_DIR = path.resolve(__dirname, 'output');
 const outputPath = path.join(OUTPUT_DIR, 'team.html');
 const render = require('./lib/htmlRenderer');
 
+/* Validation function to make sure we don't accept empty inputs */
+function isEmpty(input) {
+	return input.length !== 0;
+}
+
+/* https://stackoverflow.com/questions/9006988/node-js-on-windows-how-to-clear-console
+    Escape sequence to clear the screen on the console. 
+    Strict mode complains about this octal literal. */
 const clearOutput = () => {
-  /* https://stackoverflow.com/questions/9006988/node-js-on-windows-how-to-clear-console
-     Escape sequence to clear the screen on the console. 
-     Strict mode complains about this octal literal. */
   process.stdout.write('\033c');
 }
 
@@ -26,12 +31,15 @@ const displayBrand = () => {
 const employeeQuestions = [
   { message: `Enter this employee's name:`,
     name: 'name',
+    validate: isEmpty,
   },
   { message: `Enter the ID number for this employee:`,
     name: 'id',
+    validate: isEmpty,
   },
   { message: `Enter email address for this employee:`,
     name: 'email',
+    validate: isEmpty,
   }
 ];
 
@@ -74,7 +82,8 @@ const addManager = (employees) => {
   .prompt([ ...employeeQuestions,
     { 
       message: `Enter the office number for this manager:`,
-      name: 'officeNumber'
+      name: 'officeNumber',
+      validate: isEmpty,
     }
   ])
   .then(data => {
@@ -99,7 +108,8 @@ const addEngineer = (employees) => {
   .prompt([ ...employeeQuestions,
     { 
       message: `Enter the github username for this engineer:`,
-      name: 'github'
+      name: 'github',
+      validate: isEmpty,
     }
   ])
   .then(data => {
@@ -123,7 +133,8 @@ const addIntern = (employees) => {
   .prompt([ ...employeeQuestions,
     { 
       message: `Enter the school for this intern:`,
-      name: 'school'
+      name: 'school',
+      validate: isEmpty,
     }
   ])
   .then(data => {
