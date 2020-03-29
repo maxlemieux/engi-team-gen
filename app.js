@@ -38,8 +38,30 @@ const employeeQuestions = [
   },
   { message: `Enter email address for this employee:`,
     name: 'email',
-  },
+  }
 ];
+
+const addTeamMember = () => {
+  inquirer
+  .prompt([{ type: 'list',
+    message: `What type of employee would you like to add?`,
+    name: 'employeeType',
+    choices: [`Engineer`, `Intern`, `I don't want to add any more team members`]
+  }])
+  .then(addEmployee => {
+    switch(addEmployee.employeeType) {
+      case "Engineer":
+        addEngineer();
+        break;
+      case "Intern":
+        addIntern();
+        break;
+      default:  /* don't add any more employees, just render */
+        render(employees);
+        break;
+    }
+  });
+};
 
 const addManager = () => {
   inquirer
@@ -55,7 +77,10 @@ const addManager = () => {
     manager.id = data.id;
     manager.email = data.email;
     manager.officeNumber = data.officeNumber;
-    return manager;
+    employees.push(manager);
+  })
+  .then( () => {
+    addTeamMember();
   });
 }
 
@@ -73,7 +98,10 @@ const addEngineer = () => {
     engineer.id = data.id;
     engineer.email = data.email;
     engineer.github = data.github;
-    return engineer;
+    employees.push(engineer);
+  })  
+  .then( () => {
+    addTeamMember();
   });
 }
 
@@ -91,40 +119,18 @@ const addIntern = () => {
     intern.id = data.id;
     intern.email = data.email;
     intern.school = data.school;
-    return intern;
+    employees.push(intern);
+  })
+  .then( () => {
+    addTeamMember();
   });
 }
 
 //prompt the user for information
 
 const buildTeamPage = () => {
-  employees.push(addManager());
-  addTeamMember();
+  addManager();
 }
-
-const addTeamMember = () => {
-  inquirer
-  .prompt([{ type: 'list',
-    message: `What type of employee would you like to add?`,
-    name: 'employeeType',
-    choices: [`Engineer`, `Intern`, `I don't want to add any more team members`]
-  }])
-  .then(addEmployee => {
-    switch(addEmployee.employeeType) {
-      case "Engineer":
-        employees.push(addEngineer());
-        addTeamMember();
-        break;
-      case "Intern":
-        employees.push(addIntern());
-        addTeamMember();
-        break;
-      default:  /* don't add any more employees, just render */
-      render(employees);
-      break;
-    }
-  });
-};
 
 function init() {
   displayBrand();
