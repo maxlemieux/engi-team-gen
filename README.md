@@ -4,6 +4,7 @@
 ![Pretty printed with figlet and chalk](https://img.shields.io/badge/pretty%20print-figlet%20%2B%20chalk-brightgreen)
 
 ## Table of Contents
+* [About](#about)
 * [Installation](#installation)
 * [Usage](#usage)
 * [Demo](#demo)
