@@ -12,6 +12,15 @@ Here's an example of what you get when you add a manager, an engineer and an int
 
 ![Example output HTML](demo/engi-team-gen-screenshot.png)
 
+## Install
+Clone the repo:
+
+`git clone https://github.com/maxlemieux/engi-team-gen`
+
+Then install the dependencies:
+
+`npm i`
+
 ## Usage
 Run the app and answer the prompts. Afterwards, the `/output` directory will contain the file `team.html`, showing the information provided.
 
