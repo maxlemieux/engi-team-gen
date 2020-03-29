@@ -17,25 +17,15 @@ const clearOutput = () => {
   process.stdout.write('\033c');
 }
 
+/* Show a header when the app is launched */
 const displayBrand = () => {
   console.log(chalk.yellow(figlet.textSync('engi-team-gen', { horizontalLayout: 'full' })));
 }
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
+/* Empty placeholder for employee objects */
 const employees = [];
 
+/* Questions which are common to all employee entries */
 const employeeQuestions = [
   { message: `Enter this employee's name:`,
     name: 'name',
@@ -48,6 +38,7 @@ const employeeQuestions = [
   }
 ];
 
+/* Add employees to team, or write output if finished adding employees */
 const addTeamMember = () => {
   clearOutput();
   console.log(chalk.white(figlet.textSync('Add another team member:', { font: 'Small Slant', horizontalLayout: 'full' })));
@@ -66,7 +57,7 @@ const addTeamMember = () => {
       case "Intern":
         addIntern();
         break;
-      default:  /* don't add any more employees, just render */
+      default:  /* don't add any more employees, just render output */
         const renderedHtml = render(employees);
         fs.writeFile(outputPath, renderedHtml, function (err) {
           if (err) throw err;
@@ -79,6 +70,7 @@ const addTeamMember = () => {
   });
 };
 
+/* Add manager to team */
 const addManager = () => {
   console.log(chalk.magenta(figlet.textSync('Add a Manager:', { font: 'Small Slant', horizontalLayout: 'full' })));
   inquirer
@@ -101,6 +93,7 @@ const addManager = () => {
   });
 }
 
+/* Add engineer to team */
 const addEngineer = () => {
   clearOutput();
   console.log(chalk.blue(figlet.textSync('Add an Engineer:', { font: 'Small Slant', horizontalLayout: 'full' })));
@@ -125,6 +118,7 @@ const addEngineer = () => {
   });
 }
 
+/* Add intern to team */
 const addIntern = () => {
   clearOutput();
   console.log(chalk.green(figlet.textSync('Add an Intern:', { font: 'Small Slant', horizontalLayout: 'full' })));
@@ -148,16 +142,17 @@ const addIntern = () => {
   });
 }
 
-//prompt the user for information
-
+/* Build the team. Simple wrapper on addManager which calls addTeamMember on completion. */
 const buildTeamPage = () => {
   addManager();
 }
 
+/* Show the branding and launch interactive prompts. */
 function init() {
   clearOutput();
   displayBrand();
   buildTeamPage();
 };
 
+/* Run the app! */
 init();
