@@ -1,4 +1,5 @@
 # engi-team-gen
+[![GitHub license](https://img.shields.io/badge/license-MIT License-blue.svg)]
 
 ## About
 engi-team-gen is a CLI app built in Node.js. Creates HTML output visualizing the structure of workplace teams.
@@ -11,7 +12,7 @@ Run the app and answer the prompts. Afterwards, the `/output` directory will con
 `node app.js`
 
 ## License
-`[![GitHub license](https://img.shields.io/badge/license-MIT License-blue.svg)]`
+This code is licensed under the MIT License.
 
 ## Technologies used
 * Node.js
