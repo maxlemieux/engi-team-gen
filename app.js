@@ -22,9 +22,6 @@ const displayBrand = () => {
   console.log(chalk.yellow(figlet.textSync('engi-team-gen', { horizontalLayout: 'full' })));
 }
 
-/* Empty placeholder for employee objects */
-const employees = [];
-
 /* Questions which are common to all employee entries */
 const employeeQuestions = [
   { message: `Enter this employee's name:`,
@@ -39,7 +36,7 @@ const employeeQuestions = [
 ];
 
 /* Add employees to team, or write output if finished adding employees */
-const addTeamMember = () => {
+const addTeamMember = (employees) => {
   clearOutput();
   console.log(chalk.white(figlet.textSync('Add another team member:', { font: 'Small Slant', horizontalLayout: 'full' })));
 
@@ -52,10 +49,10 @@ const addTeamMember = () => {
   .then(addEmployee => {
     switch(addEmployee.employeeType) {
       case "Engineer":
-        addEngineer();
+        addEngineer(employees);
         break;
       case "Intern":
-        addIntern();
+        addIntern(employees);
         break;
       default:  /* don't add any more employees, just render output */
         const renderedHtml = render(employees);
@@ -71,7 +68,7 @@ const addTeamMember = () => {
 };
 
 /* Add manager to team */
-const addManager = () => {
+const addManager = (employees) => {
   console.log(chalk.magenta(figlet.textSync('Add a Manager:', { font: 'Small Slant', horizontalLayout: 'full' })));
   inquirer
   .prompt([ ...employeeQuestions,
@@ -89,12 +86,12 @@ const addManager = () => {
     employees.push(manager);
   })
   .then( () => {
-    addTeamMember();
+    addTeamMember(employees);
   });
 }
 
 /* Add engineer to team */
-const addEngineer = () => {
+const addEngineer = (employees) => {
   clearOutput();
   console.log(chalk.blue(figlet.textSync('Add an Engineer:', { font: 'Small Slant', horizontalLayout: 'full' })));
 
@@ -114,12 +111,12 @@ const addEngineer = () => {
     employees.push(engineer);
   })  
   .then( () => {
-    addTeamMember();
+    addTeamMember(employees);
   });
 }
 
 /* Add intern to team */
-const addIntern = () => {
+const addIntern = (employees) => {
   clearOutput();
   console.log(chalk.green(figlet.textSync('Add an Intern:', { font: 'Small Slant', horizontalLayout: 'full' })));
   inquirer
@@ -138,13 +135,14 @@ const addIntern = () => {
     employees.push(intern);
   })
   .then( () => {
-    addTeamMember();
+    addTeamMember(employees);
   });
 }
 
-/* Build the team. Simple wrapper on addManager which calls addTeamMember on completion. */
+/* Build the team. */
 const buildTeamPage = () => {
-  addManager();
+  const employees = [];
+  addManager(employees);
 }
 
 /* Show the branding and launch interactive prompts. */
