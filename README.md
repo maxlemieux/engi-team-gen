@@ -10,12 +10,17 @@ A team consists of a manager (required), optionally also including any number of
 
 Here's an example of what you get when you add a manager, an engineer and an intern to your team:
 
-![Example output HTML](engi-team-gen-screenshot.png)
+![Example output HTML](demo/engi-team-gen-screenshot.png)
 
 ## Usage
 Run the app and answer the prompts. Afterwards, the `/output` directory will contain the file `team.html`, showing the information provided.
 
 `node app.js`
+
+Here's a quick demo of functionality:
+
+![Demo of engi-team-gen usage](demo/engi-team-gen-demo.gif)
+
 
 ## Testing
 engi-team-gen comes with a test suite for Jest. Currently, all tests should pass. Run tests with the script:
