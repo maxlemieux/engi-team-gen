@@ -1,5 +1,5 @@
 # engi-team-gen
-[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest) [![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
+[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
@@ -12,6 +12,11 @@ A team consists of a manager (required), optionally also including any number of
 Run the app and answer the prompts. Afterwards, the `/output` directory will contain the file `team.html`, showing the information provided.
 
 `node app.js`
+
+## Testing
+engi-team-gen comes with a test suite for Jest. Currently, all tests should pass. Run tests with the script:
+
+`npm run test`
 
 ## License
 This code is licensed under the [MIT License](https://opensource.org/licenses/MIT).
