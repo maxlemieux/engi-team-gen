@@ -17,3 +17,7 @@ footer {
 .bg-manager {
   background-color: fuchsia;
 }
+
+.employee-card {
+  min-width: 250px;
+}
