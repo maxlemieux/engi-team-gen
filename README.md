@@ -1,4 +1,11 @@
 # engi-team-gen
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [Demo](#demo)
+* [Tests](#tests)
+* [License](#license)
+        
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Pretty printed with figlet and chalk](https://img.shields.io/badge/pretty%20print-figlet%20%2B%20chalk-brightgreen)
@@ -34,7 +41,7 @@ Here's a quick demo of functionality:
 ![Demo of engi-team-gen usage](demo/engi-team-gen-demo.gif)
 
 
-## Testing
+## Tests
 engi-team-gen comes with a test suite for Jest. Currently, all tests should pass. Run tests with the script:
 
 `npm run test`
