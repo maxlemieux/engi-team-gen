@@ -12,12 +12,12 @@ Here's an example of what you get when you add a manager, an engineer and an int
 
 ![Example output HTML](demo/engi-team-gen-screenshot.png)
 
-## Install
+## Installation
 Clone the repo:
 
 `git clone https://github.com/maxlemieux/engi-team-gen`
 
-Then install the dependencies:
+Then install the dependencies (figlet, chalk and inquirer):
 
 `npm i`
 
