@@ -27,51 +27,97 @@ const displayBrand = () => {
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
+const employees = [];
 
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an 
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work!```
-
-const questions = [
-  { type: 'list',
-    message: `What type of employee would you like to add?`,
-    name: 'employeeType',
-    choices: ['engineer', 'intern']
-  },
+const employeeQuestions = [
   { message: `Enter this employee's name:`,
-    name: 'employeeName',
+    name: 'name',
   },
   { message: `Enter the ID number for this employee:`,
-    name: 'employeeId',
+    name: 'id',
   },
   { message: `Enter email address for this employee:`,
-    name: 'employeeEmail',
-  },
-  { message: `Enter the office number for this manager:`,
-    name: 'employeeOfficeNumber',
-  },
-  {
-    type: 'confirm',
-    message: `Add another employee?`,
-    name: 'addAnother',
-    default: true
+    name: 'email',
   },
 ];
 
+const addManager = () => {
+  inquirer
+  .prompt([ ...employeeQuestions,
+    { 
+      message: `Enter the office number for this manager:`,
+      name: 'officeNumber'
+    }
+  ])
+  .then(data => {
+    manager = new Manager();
+    manager.name = data.name;
+    manager.id = data.id;
+    manager.email = data.email;
+    manager.officeNumber = data.officeNumber;
+    return manager;
+  });
+}
+
+const addEngineer = () => {
+  inquirer
+  .prompt([ ...employeeQuestions,
+    { 
+      message: `Enter the github username for this engineer:`,
+      name: 'github'
+    }
+  ])
+  .then(data => {
+    engineer = new Engineer();
+    engineer.name = data.name;
+    engineer.id = data.id;
+    engineer.email = data.email;
+    engineer.github = data.github;
+    return engineer;
+  });
+}
+
+const addIntern = () => {
+  inquirer
+  .prompt([ ...employeeQuestions,
+    { 
+      message: `Enter the school for this intern:`,
+      name: 'school'
+    }
+  ])
+  .then(data => {
+    intern = new Intern();
+    intern.name = data.name;
+    intern.id = data.id;
+    intern.email = data.email;
+    intern.school = data.school;
+    return intern;
+  });
+}
 
 //prompt the user for information
+
 const buildTeamPage = () => {
-    inquirer
-    .prompt(questions)
-    .then(data => buildEmployees(data))
-    .then(employees => {
+  employees.push(addManager());
+  inquirer
+  .prompt([{ type: 'list',
+    message: `What type of employee would you like to add?`,
+    name: 'employeeType',
+    choices: [`Engineer`, `Intern`, `I don't want to add any more team members`]
+  }])
+  .then(addEmployee => {
+    switch(addEmployee.employeeType) {
+      case "Engineer":
+        employees.push(addEngineer());
+        break;
+      case "Intern":
+        employees.push(addIntern());
+        break;
+      default:  /* don't add any more employees, just render */
         render(employees);
-    });    
+        break;
+    }
+  });
 };
 
 function init() {
