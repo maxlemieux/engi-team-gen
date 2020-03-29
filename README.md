@@ -8,6 +8,10 @@ engi-team-gen is a CLI app built in Node.js. Creates HTML output visualizing the
 
 A team consists of a manager (required), optionally also including any number of engineers and interns.
 
+Here's an example of what you get when you add a manager, an engineer and an intern to your team:
+
+![Example output HTML](engi-team-gen-screenshot.png)
+
 ## Usage
 Run the app and answer the prompts. Afterwards, the `/output` directory will contain the file `team.html`, showing the information provided.
 
