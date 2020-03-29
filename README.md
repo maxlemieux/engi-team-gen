@@ -10,6 +10,9 @@ Run the app and answer the prompts. Afterwards, the `/output` directory will con
 
 `node app.js`
 
+## License
+`[![GitHub license](https://img.shields.io/badge/license-MIT License-blue.svg)]`
+
 ## Technologies used
 * Node.js
 * Inquirer.js
