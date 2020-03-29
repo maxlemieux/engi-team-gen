@@ -12,5 +12,5 @@ Run the app and answer the prompts. Afterwards, the `/output` directory will con
 
 ## Technologies used
 * Node.js
-* inquirer
+* Inquirer.js
 * Bootstrap 4
