@@ -99,6 +99,10 @@ const addIntern = () => {
 
 const buildTeamPage = () => {
   employees.push(addManager());
+  addTeamMember();
+}
+
+const addTeamMember = () => {
   inquirer
   .prompt([{ type: 'list',
     message: `What type of employee would you like to add?`,
@@ -109,13 +113,15 @@ const buildTeamPage = () => {
     switch(addEmployee.employeeType) {
       case "Engineer":
         employees.push(addEngineer());
+        addTeamMember();
         break;
       case "Intern":
         employees.push(addIntern());
+        addTeamMember();
         break;
       default:  /* don't add any more employees, just render */
-        render(employees);
-        break;
+      render(employees);
+      break;
     }
   });
 };
