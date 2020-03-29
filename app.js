@@ -10,8 +10,14 @@ const OUTPUT_DIR = path.resolve(__dirname, 'output');
 const outputPath = path.join(OUTPUT_DIR, 'team.html');
 const render = require('./lib/htmlRenderer');
 
+const clearOutput = () => {
+  /* Escape sequence to clear the screen on the console. 
+     Strict mode complains about this octal literal. */
+  process.stdout.write('\033c');
+}
+
 const displayBrand = () => {
-  console.log(chalk.yellow(figlet.textSync('engi-team-gen', { horizontalLayout: 'full' })))
+  console.log(chalk.yellow(figlet.textSync('engi-team-gen', { horizontalLayout: 'full' })));
 }
 
 // Write code to use inquirer to gather information about the development team members,
@@ -42,6 +48,8 @@ const employeeQuestions = [
 ];
 
 const addTeamMember = () => {
+  clearOutput();
+
   inquirer
   .prompt([{ type: 'list',
     message: `What type of employee would you like to add?`,
@@ -57,13 +65,15 @@ const addTeamMember = () => {
         addIntern();
         break;
       default:  /* don't add any more employees, just render */
-        render(employees);
+        const renderedHtml = render(employees);
+        console.log(renderedHtml);
         break;
     }
   });
 };
 
 const addManager = () => {
+  console.log(chalk.magenta(figlet.textSync('Add a Manager:', { font: 'Small Slant', horizontalLayout: 'full' })));
   inquirer
   .prompt([ ...employeeQuestions,
     { 
@@ -85,6 +95,9 @@ const addManager = () => {
 }
 
 const addEngineer = () => {
+  clearOutput();
+  console.log(chalk.blue(figlet.textSync('Add an Engineer:', { font: 'Small Slant', horizontalLayout: 'full' })));
+
   inquirer
   .prompt([ ...employeeQuestions,
     { 
@@ -106,6 +119,8 @@ const addEngineer = () => {
 }
 
 const addIntern = () => {
+  clearOutput();
+  console.log(chalk.green(figlet.textSync('Add an Intern:', { font: 'Small Slant', horizontalLayout: 'full' })));
   inquirer
   .prompt([ ...employeeQuestions,
     { 
