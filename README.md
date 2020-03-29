@@ -1,7 +1,7 @@
 # engi-team-gen
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-(https://img.shields.io/badge/pretty%20print-figlet%20%2B%20chalk-brightgreen)
+[https://img.shields.io/badge/pretty%20print-figlet%20%2B%20chalk-brightgreen]
 
 ## About
 engi-team-gen is a CLI app built in Node.js. Creates HTML output visualizing the structure of workplace teams.
