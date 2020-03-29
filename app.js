@@ -11,7 +11,8 @@ const outputPath = path.join(OUTPUT_DIR, 'team.html');
 const render = require('./lib/htmlRenderer');
 
 const clearOutput = () => {
-  /* Escape sequence to clear the screen on the console. 
+  /* https://stackoverflow.com/questions/9006988/node-js-on-windows-how-to-clear-console
+     Escape sequence to clear the screen on the console. 
      Strict mode complains about this octal literal. */
   process.stdout.write('\033c');
 }
@@ -49,6 +50,7 @@ const employeeQuestions = [
 
 const addTeamMember = () => {
   clearOutput();
+  console.log(chalk.white(figlet.textSync('Add another team member:', { font: 'Small Slant', horizontalLayout: 'full' })));
 
   inquirer
   .prompt([{ type: 'list',
@@ -66,7 +68,12 @@ const addTeamMember = () => {
         break;
       default:  /* don't add any more employees, just render */
         const renderedHtml = render(employees);
-        console.log(renderedHtml);
+        fs.writeFile(outputPath, renderedHtml, function (err) {
+          if (err) throw err;
+          clearOutput();
+          console.log(chalk.white(figlet.textSync('All done!', { font: 'Small Slant', horizontalLayout: 'full' })));
+          console.log(`Saved team page to ${outputPath}. Thanks for using engi-team-gen!`);
+        });
         break;
     }
   });
@@ -148,6 +155,7 @@ const buildTeamPage = () => {
 }
 
 function init() {
+  clearOutput();
   displayBrand();
   buildTeamPage();
 };
